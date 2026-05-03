@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>柯匹《逻辑学导论》第二章：语言与定义 · 思维导图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f7;
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            line-height: 1.45;
+            padding: 2rem 1.5rem;
+            color: #1a2c3e;
+        }
+
+        /* 主容器 — 思维导图卡片网格风格 */
+        .mindmap-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        /* 页眉：章节标题 */
+        .chapter-header {
+            background: linear-gradient(135deg, #1e466e 0%, #133254 100%);
+            padding: 2rem 2rem 1.8rem;
+            text-align: center;
+            color: white;
+        }
+
+        .chapter-header h1 {
+            font-size: 2.2rem;
+            letter-spacing: -0.3px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-header h1 small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .chapter-header p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        /* 思维导图主体：现代flex网格，模拟放射状层级 */
+        .mindmap-body {
+            padding: 2rem 2rem 2.5rem;
+            background: #fefefe;
+        }
+
+        /* 中心节点 (核心主题) */
+        .central-node {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .central-card {
+            display: inline-block;
+            background: #1e466e;
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 100px;
+            box-shadow: 0 12px 18px -8px rgba(0, 0, 0, 0.2);
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* 主干分支网格 */
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* 每个分支卡片 */
+        .branch-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e9edf2;
+        }
+
+        .branch-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+            border-color: #cbdbe0;
+        }
+
+        .branch-title {
+            background: #f0f4fa;
+            padding: 1rem 1.5rem;
+            border-left: 6px solid;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: -0.2px;
+            color: #1a3a57;
+        }
+
+        /* 不同分支左边框不同颜色 */
+        .branch-card:nth-child(1) .branch-title { border-left-color: #2c7da0; }
+        .branch-card:nth-child(2) .branch-title { border-left-color: #61a5c2; }
+        .branch-card:nth-child(3) .branch-title { border-left-color: #2d6a4f; }
+        .branch-card:nth-child(4) .branch-title { border-left-color: #e9c46a; background: #fff9ef; color:#7f5f1a; }
+        .branch-card:nth-child(5) .branch-title { border-left-color: #e76f51; background: #fef6f2; }
+
+        .branch-content {
+            padding: 1.2rem 1.5rem 1.6rem;
+        }
+
+        /* 子主题条目样式 */
+        .subtopic {
+            margin-bottom: 1.2rem;
+        }
+
+        .subtopic-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: inline-block;
+            background: #eff3f8;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+            color: #1e466e;
+            border-left: 3px solid #8dabbf;
+            padding-left: 0.8rem;
+        }
+
+        .detail-list {
+            padding-left: 1.2rem;
+            list-style: none;
+        }
+
+        .detail-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.92rem;
+            position: relative;
+            padding-left: 1.2rem;
+            line-height: 1.4;
+            color: #2c3e4e;
+        }
+
+        .detail-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2c7da0;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .highlight {
+            background: #fdf8e7;
+            border-left: 3px solid #e9c46a;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0 0.2rem;
+            border-radius: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .definition-badge {
+            font-family: monospace;
+            background: #edf2f9;
+            padding: 0.15rem 0.4rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #ddd, transparent);
+        }
+
+        /* 补充说明区域（逻辑符号/示例） */
+        .extra-info {
+            background: #f9fafc;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            padding: 1.2rem 1.8rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .extra-box {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .extra-box h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #5c6f87;
+            margin-bottom: 0.6rem;
+        }
+
+        .extra-box p {
+            font-size: 0.9rem;
+            color: #1f3b4c;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #6c7a8e;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 750px) {
+            body {
+                padding: 1rem;
+            }
+            .central-card {
+                font-size: 1.3rem;
+                padding: 0.6rem 1.2rem;
+            }
+            .branch-title {
+                font-size: 1.2rem;
+            }
+            .mindmap-body {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="mindmap-container">
+    <div class="chapter-header">
+        <h1>第二章 · 语言：含义与定义 <small>| 逻辑学导论 (柯匹)</small></h1>
+        <p>从语词到精确界定 —— 逻辑分析的起点与基石</p>
+    </div>
+
+    <div class="mindmap-body">
+        <!-- 中心主题 -->
+        <div class="central-node">
+            <div class="central-card">📘 语言与定义</div>
+            <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #4a627a;">理解语言的三种功能 · 外延与内涵 · 定义规则</div>
+        </div>
+
+        <!-- 5大主干分支：逻辑导图核心 -->
+        <div class="branches-grid">
+            <!-- 分支1：语言的功能 -->
+            <div class="branch-card">
+                <div class="branch-title">🔍 一、语言的主要功能</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">信息性功能</div>
+                        <ul class="detail-list">
+                            <li>传递事实、描述事态、报告讯息</li>
+                            <li>真值载体：命题有真假之分</li>
+                            <li>例：“地球绕太阳公转”</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">表达性功能</div>
+                        <ul class="detail-list">
+                            <li>表达情感、态度、情绪或立场</li>
+                            <li>不关乎真假，重在流露心境</li>
+                            <li>例：“啊，落日真令人惊叹！”</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title"> directive / 指令性功能</div>
+                        <ul class="detail-list">
+                            <li>引起行动、发出请求或命令</li>
+                            <li>逻辑学关注祈使句的逻辑关联</li>
+                            <li>例：“请关闭窗户”</li>
+                        </ul>
+                    </div>
+                    <div class="highlight">
+                        💡 三种功能常混合使用，逻辑分析需精准识别主导功能。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支2：外延与内涵 (语词意义) -->
+            <div class="branch-card">
+                <div class="branch-title">📚 二、语词的两种意义</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">外延 (Extension / Denotation)</div>
+                        <ul class="detail-list">
+                            <li>语词所指的对象集合（事物/个体）</li>
+                            <li>“行星”的外延 = {水星, 金星, 地球, ...}</li>
+                            <li>外延可随世界变化（如“美国总统”）</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">内涵 (Intension / Connotation)</div>
+                        <ul class="detail-list">
+                            <li>语词所包含的属性总和 / 概念特征</li>
+                            <li>“单身汉”的内涵 = 成年的未婚男性</li>
+                            <li>决定外延的核心：内涵越丰富，外延越小</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">外延与内涵的交互</div>
+                        <ul class="detail-list">
+                            <li>内涵决定外延，外延反作用于理解</li>
+                            <li>相同外延≠相同内涵 (晨星/暮星)</li>
+                            <li>逻辑定义需明确内涵划定边界</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支3：定义的类型与结构 -->
+            <div class="branch-card">
+                <div class="branch-title">✍️ 三、定义的类型</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">1. 规定定义 (Stipulative)</div>
+                        <ul class="detail-list">
+                            <li>引入新符号或赋予新含义，无需真假</li>
+                            <li>例：“‘布林克斯’指一种新型合金”</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">2. 词典定义 (Lexical)</div>
+                        <ul class="detail-list">
+                            <li>报告语词已有用法，需符合惯例</li>
+                            <li>例：权威词典对“哲学”的解释</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">3. 精确定义 (Precising)</div>
+                        <ul class="detail-list">
+                            <li>减少模糊性，用于法律/科学语境</li>
+                            <li>例：“‘成年人’指年满18周岁的公民”</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">4. 理论定义 (Theoretical)</div>
+                        <ul class="detail-list">
+                            <li>建造理论体系，揭示事物本质</li>
+                            <li>例：“‘水’是H₂O分子构成的液体”</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">5. 说服定义 (Persuasive)</div>
+                        <ul class="detail-list">
+                            <li>试图借助情感改变态度，含修辞目的</li>
+                            <li>例：“‘真正的民主’是……”</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支4：定义的结构与方法 (属+种差) -->
+            <div class="branch-card">
+                <div class="branch-title">⚙️ 四、定义的规则与方法</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">属加种差 (Genus + Differentia)</div>
+                        <ul class="detail-list">
+                            <li>经典定义法：先找属概念，再区分种差</li>
+                            <li>例：“三角形 = 多边形(属) + 三条边(种差)”</li>
+                            <li><span class="definition-badge">适用</span> 多数实体词定义</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">五项定义规则 (柯匹核心)</div>
+                        <ul class="detail-list">
+                            <li><strong>① 应当揭示本质属性</strong> — 而非偶然特征</li>
+                            <li><strong>② 不能循环定义</strong> — 避免同语反复</li>
+                            <li><strong>③ 既不能过宽也不能过窄</strong> — 外延相等</li>
+                            <li><strong>④ 必须清楚且无歧义</strong> — 不使用隐喻、模糊词</li>
+                            <li><strong>⑤ 肯定优先于否定</strong> — 除非必要，避免纯否定定义</li>
+                        </ul>
+                    </div>
+                    <div class="highlight">
+                        ⚠️ 常见谬误：循环定义、定义过宽/过窄、晦涩费解。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支5：内涵与外延的细化技术 -->
+            <div class="branch-card">
+                <div class="branch-title">🧠 五、外延与内涵的界定技术</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">外延定义法</div>
+                        <ul class="detail-list">
+                            <li><strong>枚举定义</strong> —— 逐个列出成员 (有限类)</li>
+                            <li><strong>列举子类</strong> —— 属之下划分种 (如偶数=2,4,6…)</li>
+                            <li><strong>实指定义</strong> —— 通过实物/例子指示意义</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">内涵定义法</div>
+                        <ul class="detail-list">
+                            <li>属加种差 (最常用)</li>
+                            <li>操作定义：通过测试程序定义概念</li>
+                            <li>语境定义：在句子中隐含含义</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">模糊性与歧义</div>
+                        <ul class="detail-list">
+                            <li><strong>模糊</strong> (边界不清) —— “秃头”、“高个子”</li>
+                            <li><strong>歧义</strong> (多义) —— “bank”(银行/河岸)</li>
+                            <li>逻辑要求语境澄清，避免谬误</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 补充逻辑实例 和 关键术语 模块（帮助新手理解） -->
+        <div class="extra-info">
+            <div class="extra-box">
+                <h4>📌 典型例子·区分外延与内涵</h4>
+                <p><strong>“等边三角形”与“等角三角形”</strong><br>
+                外延相同（同一类对象）⇨ 内涵不同（定义属性不同）。<br>
+                理解外延+内涵是分析与构造定义的基础。</p>
+            </div>
+            <div class="extra-box">
+                <h4>🎯 定义规则 · 快速记忆</h4>
+                <p>本质 · 不循环 · 宽窄相称 · 清晰 · 肯定优先<br>
+                违反例子：“人类是两足无羽毛的动物” (过宽: 拔毛鸡)<br>
+                “生命是灵魂的自运动” (晦涩模糊)</p>
+            </div>
+            <div class="extra-box">
+                <h4>📖 语言功能 & 逻辑重要性</h4>
+                <p>逻辑学主要分析信息性语言（命题真假）<br>
+                表达性与指令性功能需转化或另作处理，避免情感谬误。</p>
+            </div>
+        </div>
+
+        <!-- 重点总结卡片：柯匹第二章核心脉络 -->
+        <div style="background: #eef3fc; border-radius: 1.2rem; margin-top: 1.2rem; padding: 1.2rem 1.8rem;">
+            <h3 style="font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">🎓 新手要点·第二章核心地图</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 0.8rem;">
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">🔹 区分三功能</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">🔹 外延是集合，内涵是属性</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">🔹 五种定义类型各有效用</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">🔹 属+种差构造定义</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">🔹 五项规则检验定义质量</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">🔹 避免模糊/歧义谬误</span>
+            </div>
+            <p style="margin-top: 0.8rem; font-size: 0.85rem; color: #2c5282;">✨ 掌握本章，为后续直言命题、三段论与逻辑论证奠定清晰的语言根基。</p>
+        </div>
+
+        <div class="footer-note">
+            ⚡ 基于 Irving M. Copi 《逻辑学导论》第15版 第二章内容提炼 · 思维导图式梳理 · 助你轻松入门逻辑分析
+        </div>
+    </div>
+</div>
+</body>
+</html>
