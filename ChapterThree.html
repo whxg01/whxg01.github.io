@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>柯匹《逻辑学导论》第三章：非形式谬误 · 思维导图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f4f9;
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            line-height: 1.45;
+            padding: 2rem 1.5rem;
+            color: #1a2c3e;
+        }
+
+        .mindmap-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .chapter-header {
+            background: linear-gradient(135deg, #8b3c2c 0%, #6a2c1f 100%);
+            padding: 2rem 2rem 1.8rem;
+            text-align: center;
+            color: white;
+        }
+
+        .chapter-header h1 {
+            font-size: 2.2rem;
+            letter-spacing: -0.3px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-header h1 small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .chapter-header p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        .mindmap-body {
+            padding: 2rem 2rem 2.5rem;
+            background: #fefefe;
+        }
+
+        .central-node {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .central-card {
+            display: inline-block;
+            background: #8b3c2c;
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 100px;
+            box-shadow: 0 12px 18px -8px rgba(0, 0, 0, 0.2);
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .branch-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e9edf2;
+        }
+
+        .branch-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .branch-title {
+            background: #fef4f0;
+            padding: 1rem 1.5rem;
+            border-left: 6px solid;
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: #6b2e1f;
+        }
+
+        /* 不同卡片左边框颜色 */
+        .branch-card:nth-child(1) .branch-title { border-left-color: #c25d3b; }
+        .branch-card:nth-child(2) .branch-title { border-left-color: #e07a4b; }
+        .branch-card:nth-child(3) .branch-title { border-left-color: #c27d2e; background: #fff7e8; color: #7a4a1a; }
+        .branch-card:nth-child(4) .branch-title { border-left-color: #4c7a8f; background: #eff7fc; color: #265a6e; }
+        .branch-card:nth-child(5) .branch-title { border-left-color: #5f7c5c; background: #f0f6ef; color: #2a5c2a; }
+
+        .branch-content {
+            padding: 1.2rem 1.5rem 1.6rem;
+        }
+
+        .subtopic {
+            margin-bottom: 1.2rem;
+        }
+
+        .subtopic-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: inline-block;
+            background: #f2f0ea;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+            color: #8b3c2c;
+            border-left: 3px solid #d98c5f;
+            padding-left: 0.8rem;
+        }
+
+        .detail-list {
+            padding-left: 1.2rem;
+            list-style: none;
+        }
+
+        .detail-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.92rem;
+            position: relative;
+            padding-left: 1.2rem;
+            line-height: 1.4;
+            color: #2c3e4e;
+        }
+
+        .detail-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #c25d3b;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: #fff1e6;
+            border-left: 4px solid #e07a4b;
+            padding: 0.6rem 0.9rem;
+            margin: 0.8rem 0 0.2rem;
+            border-radius: 0.8rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .fallacy-example {
+            background: #fef9e6;
+            border-radius: 0.8rem;
+            padding: 0.5rem 0.8rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            border-left: 3px solid #f3b33d;
+            color: #5e3a1f;
+        }
+
+        .badge {
+            background: #e9ecef;
+            font-family: monospace;
+            padding: 0.15rem 0.45rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.6rem;
+        }
+
+        .extra-info {
+            background: #fafafc;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            padding: 1.2rem 1.8rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1.2rem;
+        }
+
+        .extra-box {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .extra-box h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8b5a4b;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #6c7a8e;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 750px) {
+            body { padding: 1rem; }
+            .central-card { font-size: 1.3rem; padding: 0.6rem 1.2rem; }
+            .branch-title { font-size: 1.2rem; }
+            .mindmap-body { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="mindmap-container">
+    <div class="chapter-header">
+        <h1>第三章 · 非形式谬误 <small>| 柯匹《逻辑学导论》</small></h1>
+        <p>识别推理陷阱 · 谬误分类与剖析 · 提升批判性思维</p>
+    </div>
+
+    <div class="mindmap-body">
+        <div class="central-node">
+            <div class="central-card">⚠️ 非形式谬误：论证中的“隐秘陷阱”</div>
+            <div style="margin-top:0.5rem; font-size:0.9rem; color:#6b5a4a;">内容相关谬误 · 歧义谬误 · 不当预设谬误 · 归纳谬误</div>
+        </div>
+
+        <div class="branches-grid">
+            <!-- 1. 相干谬误 (诉诸情感/人身等) -->
+            <div class="branch-card">
+                <div class="branch-title">🎭 一、相干谬误 (Relevance Fallacies)</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">诉诸人身 (Ad Hominem)</div>
+                        <ul class="detail-list">
+                            <li>攻击提出观点的人而非反驳观点本身</li>
+                            <li>人身攻击型、处境型、你也是型 (tu quoque)</li>
+                        </ul>
+                        <div class="fallacy-example">📌 例：“你怎么能谈环保？你自己还开燃油车。”</div>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">诉诸情感 (Appeal to Emotion)</div>
+                        <ul class="detail-list">
+                            <li>利用恐惧、怜悯、同情等情绪替代理性证据</li>
+                            <li>常见于政治演讲、广告、煽动性言论</li>
+                        </ul>
+                        <div class="fallacy-example">📌 例：“如果不通过这项法案，无数儿童将挨饿，请投赞成票。”</div>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">诉诸暴力 (Appeal to Force) / 诉诸怜悯</div>
+                        <ul class="detail-list">
+                            <li>以威胁或恫吓代替逻辑论证</li>
+                            <li>或以不恰当的可怜处境要求接受结论</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">红鲱鱼·稻草人</div>
+                        <ul class="detail-list">
+                            <li><strong>红鲱鱼</strong>：引入无关话题转移注意力</li>
+                            <li><strong>稻草人</strong>：歪曲对方立场使其更容易攻击</li>
+                        </ul>
+                    </div>
+                    <div class="highlight">🔹 相干谬误的核心：前提在逻辑上与结论无关，但在心理上似乎相关。</div>
+                </div>
+            </div>
+
+            <!-- 2. 不当归纳谬误 -->
+            <div class="branch-card">
+                <div class="branch-title">📊 二、不当归纳谬误 (Inductive Fallacies)</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">轻率概括 (Hasty Generalization)</div>
+                        <ul class="detail-list">
+                            <li>基于过小或非代表性的样本得出一般结论</li>
+                            <li>典型偏见：刻板印象来源</li>
+                        </ul>
+                        <div class="fallacy-example">📌 “我遇到两个A校学生都很粗鲁，所以A校学生全都粗鲁。”</div>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">虚假因果 (False Cause / Post Hoc)</div>
+                        <ul class="detail-list">
+                            <li>仅因事件B发生在事件A之后，就认定A导致B</li>
+                            <li>忽视共同原因或巧合</li>
+                        </ul>
+                        <div class="fallacy-example">📌 “公鸡打鸣后天亮，所以公鸡打鸣造成天亮。”</div>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">诉诸无知 (Appeal to Ignorance)</div>
+                        <ul class="detail-list">
+                            <li>不能证明某命题为假，便断定其为真（反之亦然）</li>
+                            <li>将举证责任颠倒</li>
+                        </ul>
+                        <div class="fallacy-example">📌 “没有人能证明外星人不存在，所以外星人一定存在。”</div>
+                    </div>
+                    <div class="highlight">📉 不当归纳削弱了归纳论证的强度，容易得出冒险的结论。</div>
+                </div>
+            </div>
+
+            <!-- 3. 歧义谬误 (歧义/双关/错位重音) -->
+            <div class="branch-card">
+                <div class="branch-title">🔀 三、歧义谬误 (Ambiguity Fallacies)</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">语词歧义 (Equivocation)</div>
+                        <ul class="detail-list">
+                            <li>同一语词在不同语境中意义不同，导致推理错误</li>
+                            <li>常出现在多义词（如“自由”“正义”）</li>
+                        </ul>
+                        <div class="fallacy-example">📌 “羽毛很轻；轻的东西不能是重的；所以羽毛不能是重的。” (轻：重量vs轻浮)</div>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">语法歧义 (Amphiboly)</div>
+                        <ul class="detail-list">
+                            <li>句子结构含混导致多种解释</li>
+                            <li>标点或修饰语指代不明</li>
+                        </ul>
+                        <div class="fallacy-example">📌 “老张说小王是个好人，然后他离开了。” (谁离开了？)</div>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">合称与分称谬误 (Composition/Division)</div>
+                        <ul class="detail-list">
+                            <li><strong>合称</strong>：个体具有某属性，推出整体也具有</li>
+                            <li><strong>分称</strong>：整体具有某属性，推出每个部分也具有</li>
+                        </ul>
+                        <div class="fallacy-example">📌 合称：“每个球员都很出色，所以球队是一支出色球队。” 分称：“这个机器很重，所以每个零件都很重。”</div>
+                    </div>
+                    <div class="highlight">⚠️ 歧义谬误源于语言表达不精确，需澄清含义后再评估推理。</div>
+                </div>
+            </div>
+
+            <!-- 4. 不当预设谬误 -->
+            <div class="branch-card">
+                <div class="branch-title">❓ 四、不当预设谬误 (Presumption Fallacies)</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">丐题 / 循环论证 (Begging the Question)</div>
+                        <ul class="detail-list">
+                            <li>把尚待证明的结论直接或间接用作前提</li>
+                            <li>循环推理，无独立证据支持</li>
+                        </ul>
+                        <div class="fallacy-example">📌 “《圣经》是神的话语，因为《圣经》如此宣称，而它是可信的因为它是神的话语。”</div>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">复杂问语 (Complex Question)</div>
+                        <ul class="detail-list">
+                            <li>预设了未经证明的假定</li>
+                            <li>提问中隐含陷阱，只能回答是/否但无论怎样都承认预设</li>
+                        </ul>
+                        <div class="fallacy-example">📌 “你停止打你妻子了吗？” (预设你曾经打过)</div>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">假两难 (False Dilemma)</div>
+                        <ul class="detail-list">
+                            <li>忽略其他选项，只给出两个极端选择</li>
+                            <li>制造非黑即白的谬误</li>
+                        </ul>
+                        <div class="fallacy-example">📌 “要么支持减税法案，要么国家经济崩溃。”</div>
+                    </div>
+                    <div class="highlight">🔺 这些谬误隐藏了可疑的预设，误导听众跳过批判性质疑。</div>
+                </div>
+            </div>
+
+            <!-- 5. 其他常见谬误 & 综合识别技巧 -->
+            <div class="branch-card">
+                <div class="branch-title">🧠 五、谬误识别进阶 & 防御策略</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">诉诸权威 (Appeal to Authority)</div>
+                        <ul class="detail-list">
+                            <li>误用权威：领域外权威、匿名权威、非专业意见</li>
+                            <li>合理使用权威须满足：权威在相关领域且共识可靠</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">诉诸流行 (Bandwagon) & 诉诸传统</div>
+                        <ul class="detail-list">
+                            <li>“多数人相信所以为真”或“历来如此所以正确”</li>
+                            <li>流行与传统本身不蕴含逻辑必然</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">识别能力清单</div>
+                        <ul class="detail-list">
+                            <li>✅ 检查前提是否真正支持结论（相干性）</li>
+                            <li>✅ 警惕情感煽动词汇和人身攻击</li>
+                            <li>✅ 澄清关键术语是否前后一致</li>
+                            <li>✅ 寻找隐含假设，是否不公正地排除其他可能</li>
+                            <li>✅ 评估样本和因果推断是否草率</li>
+                        </ul>
+                    </div>
+                    <div class="fallacy-example">
+                        💡 谬误常混合出现，一个论证可能同时包含“稻草人+诉诸情感”。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 附加快速参考表 -->
+        <div class="extra-info">
+            <div class="extra-box">
+                <h4>📕 谬误家族速记</h4>
+                <p><strong>相干谬误</strong>：无关转移——人身、情感、红鲱鱼、稻草人<br>
+                <strong>归纳谬误</strong>：弱归纳——轻率概括、虚假因果、诉诸无知<br>
+                <strong>歧义谬误</strong>：语言模糊——语词歧义、语法歧义、合称/分称<br>
+                <strong>预设谬误</strong>：隐藏假设——丐题、复杂问题、假两难</p>
+            </div>
+            <div class="extra-box">
+                <h4>🎯 经典考试高频点</h4>
+                <ul style="margin-left: 1rem;">
+                    <li>“对事不对人” vs 人身攻击</li>
+                    <li>“之后所以因果” 谬误 (post hoc)</li>
+                    <li>稻草人与偷换论题的区别</li>
+                    <li>循环论证与同义反复</li>
+                </ul>
+            </div>
+            <div class="extra-box">
+                <h4>🧭 新手学习建议</h4>
+                <p>每遇到一个论证，先问自己：<br>
+                1️⃣ 前提是否与结论相干？<br>
+                2️⃣ 语言有无歧义或含混？<br>
+                3️⃣ 是否存在未经证明的预设？<br>
+                4️⃣ 归纳跳跃是否太大？</p>
+            </div>
+        </div>
+
+        <!-- 总结卡片 -->
+        <div style="background: #fef2ea; border-radius: 1.2rem; margin-top: 1rem; padding: 1.2rem 1.8rem;">
+            <h3 style="font-weight: 600; margin-bottom: 0.75rem;">📖 第三章总结 · 柯匹谬误论核心</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.6rem 1rem;">
+                <span style="background: white; border-radius: 30px; padding: 0.2rem 1rem; font-size: 0.85rem;">⚠️ 非形式谬误只能在内容/语境中识别</span>
+                <span style="background: white; border-radius: 30px; padding: 0.2rem 1rem; font-size: 0.85rem;">🎭 相干谬误切断逻辑联系</span>
+                <span style="background: white; border-radius: 30px; padding: 0.2rem 1rem; font-size: 0.85rem;">📊 归纳谬误夸大证据分量</span>
+                <span style="background: white; border-radius: 30px; padding: 0.2rem 1rem; font-size: 0.85rem;">🔀 歧义谬误让语言欺骗推理</span>
+                <span style="background: white; border-radius: 30px; padding: 0.2rem 1rem; font-size: 0.85rem;">❓ 预设谬误绑架对话前提</span>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; background: #fae6d8; border-radius: 1rem; padding: 0.7rem; text-align: center;">
+                💡 掌握谬误不仅为了考试，更是日常沟通、媒体素养与理性决策的利器。
+            </p>
+        </div>
+
+        <div class="footer-note">
+            📖 基于 Irving M. Copi, Carl Cohen, Victor Rodych 《逻辑学导论》第15版 第三章内容精炼 | 非形式谬误全景图 · 适合逻辑初学者与自学者
+        </div>
+    </div>
+</div>
+</body>
+</html>
