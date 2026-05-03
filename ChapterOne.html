@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>柯匹《逻辑学导论》第一章：逻辑学基本概念 · 思维导图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f7;
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            line-height: 1.45;
+            padding: 2rem 1.5rem;
+            color: #1a2c3e;
+        }
+
+        /* 主容器 */
+        .mindmap-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        /* 页眉 */
+        .chapter-header {
+            background: linear-gradient(135deg, #1e4a3b 0%, #0f3d30 100%);
+            padding: 2rem 2rem 1.8rem;
+            text-align: center;
+            color: white;
+        }
+
+        .chapter-header h1 {
+            font-size: 2.2rem;
+            letter-spacing: -0.3px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-header h1 small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .chapter-header p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        /* 思维导图主体 */
+        .mindmap-body {
+            padding: 2rem 2rem 2.5rem;
+            background: #fefefe;
+        }
+
+        /* 中心节点 */
+        .central-node {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .central-card {
+            display: inline-block;
+            background: #1e4a3b;
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 100px;
+            box-shadow: 0 12px 18px -8px rgba(0, 0, 0, 0.2);
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* 主干分支网格 */
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* 卡片样式 */
+        .branch-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e9edf2;
+        }
+
+        .branch-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+            border-color: #cbdbe0;
+        }
+
+        .branch-title {
+            background: #f0f4fa;
+            padding: 1rem 1.5rem;
+            border-left: 6px solid;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: -0.2px;
+            color: #1a3a2f;
+        }
+
+        /* 不同分支左边框颜色 */
+        .branch-card:nth-child(1) .branch-title { border-left-color: #2c7a5e; }
+        .branch-card:nth-child(2) .branch-title { border-left-color: #3b8c6e; }
+        .branch-card:nth-child(3) .branch-title { border-left-color: #58a68b; }
+        .branch-card:nth-child(4) .branch-title { border-left-color: #e9b35f; background: #fff9ef; color:#7f5a1a; }
+        .branch-card:nth-child(5) .branch-title { border-left-color: #d97747; background: #fef6f2; }
+
+        .branch-content {
+            padding: 1.2rem 1.5rem 1.6rem;
+        }
+
+        /* 子主题样式 */
+        .subtopic {
+            margin-bottom: 1.2rem;
+        }
+
+        .subtopic-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: inline-block;
+            background: #eff3f8;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+            color: #1e4a3b;
+            border-left: 3px solid #8dbfa8;
+            padding-left: 0.8rem;
+        }
+
+        .detail-list {
+            padding-left: 1.2rem;
+            list-style: none;
+        }
+
+        .detail-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.93rem;
+            position: relative;
+            padding-left: 1.2rem;
+            line-height: 1.45;
+            color: #2c3e4e;
+        }
+
+        .detail-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2c7a5e;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .highlight {
+            background: #fdf8e7;
+            border-left: 3px solid #e9b35f;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0 0.2rem;
+            border-radius: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .example-box {
+            background: #f1f9f4;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            color: #1c5a44;
+            border: 1px solid #cee6db;
+        }
+
+        .badge {
+            background: #e9ecef;
+            font-family: monospace;
+            padding: 0.15rem 0.45rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-right: 0.3rem;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #ddd, transparent);
+        }
+
+        /* 补充对比模块 */
+        .extra-info {
+            background: #f9fafc;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            padding: 1.2rem 1.8rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .extra-box {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .extra-box h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #5c6f87;
+            margin-bottom: 0.6rem;
+        }
+
+        .extra-box p, .extra-box li {
+            font-size: 0.9rem;
+            color: #1f3b4c;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #6c7a8e;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 750px) {
+            body {
+                padding: 1rem;
+            }
+            .central-card {
+                font-size: 1.3rem;
+                padding: 0.6rem 1.2rem;
+            }
+            .branch-title {
+                font-size: 1.2rem;
+            }
+            .mindmap-body {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="mindmap-container">
+    <div class="chapter-header">
+        <h1>第一章 · 逻辑学的基本概念 <small>| 柯匹《逻辑学导论》</small></h1>
+        <p>论证 · 前提与结论 · 演绎与归纳 · 识别与分析</p>
+    </div>
+
+    <div class="mindmap-body">
+        <!-- 中心核心 -->
+        <div class="central-node">
+            <div class="central-card">🧠 逻辑学：研究论证的科学</div>
+            <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #4a627a;">区分好坏推理 · 构建清晰论证 · 批判性思维的根基</div>
+        </div>
+
+        <!-- 五大分支 -->
+        <div class="branches-grid">
+            <!-- 分支1：逻辑学的定义与任务 -->
+            <div class="branch-card">
+                <div class="branch-title">📖 一、逻辑学的核心任务</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">逻辑的定义</div>
+                        <ul class="detail-list">
+                            <li>分析并评估论证的形式学科</li>
+                            <li>区分“正确的推理”与“错误的推理”</li>
+                            <li>提供区分有效/无效、强/弱的工具</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">逻辑的实用性</div>
+                        <ul class="detail-list">
+                            <li>任何学科的基础：数学、法律、科学、日常论辩</li>
+                            <li>提升批判性思维，避免被误导</li>
+                            <li>理性沟通与说服的支柱</li>
+                        </ul>
+                    </div>
+                    <div class="example-box">
+                        💡 逻辑并不直接告诉你“该相信什么”，而是告诉你“如何从已知推出未知是否可靠”。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支2：命题、论证、前提与结论 -->
+            <div class="branch-card">
+                <div class="branch-title">⚙️ 二、论证的结构元素</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">命题 (Proposition)</div>
+                        <ul class="detail-list">
+                            <li>可被判断为真或假的陈述句</li>
+                            <li>逻辑学的基本运算单位</li>
+                            <li>例: “巴黎是法国的首都” (真命题)</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">论证 (Argument)</div>
+                        <ul class="detail-list">
+                            <li>由一组命题构成，其中一些为前提，一个为结论</li>
+                            <li>前提旨在为结论提供支持或证据</li>
+                            <li>标志词：因为、由于、鉴于 (前提)；所以、因此、故 (结论)</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">前提与结论的识别技巧</div>
+                        <ul class="detail-list">
+                            <li>寻找推理指示词</li>
+                            <li>区分无关阐述与核心论证</li>
+                            <li>标准化排列：前提1，前提2，… ∴ 结论</li>
+                        </ul>
+                    </div>
+                    <div class="highlight">
+                        🔑 关键：一个论证必须至少有一个前提和一个结论，而且前提必须与结论有推论关系。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支3：演绎论证与归纳论证 -->
+            <div class="branch-card">
+                <div class="branch-title">🔍 三、演绎 vs 归纳</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">演绎论证 (Deductive)</div>
+                        <ul class="detail-list">
+                            <li>结论必然地从前提得出 (前提真 ⇒ 结论必真)</li>
+                            <li>评估标准：有效性 (validity) 与 可靠性 (soundness)</li>
+                            <li><span class="badge">有效</span> 不可能前提真而结论假</li>
+                            <li><span class="badge">可靠</span> 有效 + 所有前提为真</li>
+                            <li>例：所有人会死；苏格拉底是人；所以苏格拉底会死。</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">归纳论证 (Inductive)</div>
+                        <ul class="detail-list">
+                            <li>结论或然地基于前提，提供或然性支持</li>
+                            <li>评估标准：强度 (strong) / 力度 (cogent)</li>
+                            <li>前提真时结论很可能为真，但不绝对</li>
+                            <li>例：过去300年天鹅都是白的；所以下一只天鹅也是白的。</li>
+                        </ul>
+                    </div>
+                    <div class="example-box">
+                        📊 归纳常用于科学假说、日常预测、统计推论；演绎用于数学证明和逻辑必然推理。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支4：有效性、真值及其关系 -->
+            <div class="branch-card">
+                <div class="branch-title">✅ 四、有效性与真值</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">有效性与前提真假独立吗？</div>
+                        <ul class="detail-list">
+                            <li>有效性只关乎论证形式，与实际真假无关</li>
+                            <li>有效论证可能含有假前提 (但结论仍可能假或真)</li>
+                            <li>无效论证也可能有真前提与真结论</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">可靠论证 (Soundness)</div>
+                        <ul class="detail-list">
+                            <li>演绎论证的最高标准 = 有效 + 所有前提真实</li>
+                            <li>可靠论证的结论必然为真</li>
+                            <li>大多数哲学与科学辩论寻求可靠论证</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">归纳强度对比</div>
+                        <ul class="detail-list">
+                            <li>归纳强度：前提提供结论多大程度的支持</li>
+                            <li>强归纳 + 所有前提真 = 有力论证 (cogent)</li>
+                            <li>弱归纳无法构成好的推理</li>
+                        </ul>
+                    </div>
+                    <div class="highlight">
+                        ⚠️ 常见误区：无效论证 ≠ 结论必然为假；有效论证 ≠ 结论一定为真（前提可能假）。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支5：论证分析基本步骤及谬误萌芽 -->
+            <div class="branch-card">
+                <div class="branch-title">🧩 五、识别与分析论证</div>
+                <div class="branch-content">
+                    <div class="subtopic">
+                        <div class="subtopic-title">论证重构四步法</div>
+                        <ul class="detail-list">
+                            <li><strong>① 定位结论</strong> — 作者试图证明什么？</li>
+                            <li><strong>② 找出前提</strong> — 提供了哪些理由/证据？</li>
+                            <li><strong>③ 剔除冗余</strong> — 修辞、重复、无关内容</li>
+                            <li><strong>④ 标准化排序</strong> — 用前提→结论形式表达</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">常见非论证（排除迷惑项）</div>
+                        <ul class="detail-list">
+                            <li><strong>说明/解释</strong> — 旨在说明事件原因，而非证明观点</li>
+                            <li><strong>条件陈述</strong> — “如果...那么...” 本身不是论证</li>
+                            <li><strong>单纯事实报告</strong> — 没有推论关系</li>
+                            <li><strong>修辞问句与感叹</strong> — 情感化表达</li>
+                        </ul>
+                    </div>
+                    <div class="subtopic">
+                        <div class="subtopic-title">谬误初探 (为后续章节铺垫)</div>
+                        <ul class="detail-list">
+                            <li>形式谬误：违反演绎推理规则</li>
+                            <li>非形式谬误：歧义、不当预设、诉诸情感等</li>
+                        </ul>
+                    </div>
+                    <div class="example-box">
+                        📝 范例： “若下雨，地湿。地未湿，所以没下雨。” → 有效演绎 (拒取式) ，判断可靠性需检查前提真假。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 对比表格 和 核心概念记忆区  (新手友好)-->
+        <div class="extra-info">
+            <div class="extra-box">
+                <h4>🎯 演绎 vs 归纳 对比速记</h4>
+                <ul style="margin-left: 1rem; list-style: disc;">
+                    <li><strong>演绎</strong> ：必然性 · 有效性/可靠性 · 数学证明</li>
+                    <li><strong>归纳</strong> ：或然性 · 强度/力度 · 科学假说</li>
+                    <li>目标不同：演绎追求绝对保真 · 归纳追求合理预测</li>
+                </ul>
+            </div>
+            <div class="extra-box">
+                <h4>📌 关键术语自查</h4>
+                <p>✔ 命题 · 论证 · 前提 · 结论<br>
+                ✔ 演绎有效 (valid) · 可靠 (sound)<br>
+                ✔ 归纳强 (strong) · 有力 (cogent)<br>
+                ✔ 指示词识别 (因此/因为)</p>
+            </div>
+            <div class="extra-box">
+                <h4>🧭 新手学习路径</h4>
+                <p>掌握第一章 = 搭建逻辑学地基 → 后续学习直言命题、三段论、谬误识别、现代符号逻辑才能融会贯通。<br>
+                核心能力：从日常语言中剥离出论证结构。</p>
+            </div>
+        </div>
+
+        <!-- 总结要诀 卡片 -->
+        <div style="background: #eef6f2; border-radius: 1.2rem; margin-top: 1.2rem; padding: 1.2rem 1.8rem;">
+            <h3 style="font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">📌 第一章核心要点 (思维导图浓缩)</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 0.8rem;">
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">✅ 逻辑是论证科学</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">✅ 命题有真假，论证有推论</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">✅ 演绎：必然保真 / 归纳：或然支持</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">✅ 有效≠真前提，可靠=有效+真前提</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">✅ 四步重构论证：找结论→前提→整理→标准化</span>
+                <span style="background: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">✅ 识别非论证 (解释/报告/条件句)</span>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem; background: #d9eee2; padding: 0.6rem; border-radius: 1rem; text-align: center;">
+                💡 柯匹经典框架：先理解论证是什么，再掌握好坏推理的判准，后续章节层层深入。
+            </p>
+        </div>
+
+        <div class="footer-note">
+            🧭 基于 Irving M. Copi, Carl Cohen, Victor Rodych 《逻辑学导论》第15版 第一章提炼 · 专为逻辑初学者设计的思维导图 | 支持手机/平板学习
+        </div>
+    </div>
+</div>
+</body>
+</html>
